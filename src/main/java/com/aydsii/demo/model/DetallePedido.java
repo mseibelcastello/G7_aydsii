@@ -3,6 +3,7 @@ package com.aydsii.demo.model;
 import jakarta.persistence.*;
 import lombok.*;
 import jakarta.validation.constraints.*;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 @Entity
 @Table(name = "detalle_pedido")
