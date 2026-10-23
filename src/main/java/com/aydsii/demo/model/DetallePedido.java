@@ -3,6 +3,7 @@ package com.aydsii.demo.model;
 import jakarta.persistence.*;
 import lombok.*;
 import jakarta.validation.constraints.*;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 @Entity
 @Table(name = "detalle_pedido")
@@ -12,14 +13,18 @@ import jakarta.validation.constraints.*;
 @Schema(description = "Línea de un pedido: un producto con su cantidad y precio")
 public class DetallePedido {
 
-    @MapsId("pedidoId")
-    @ManyToOne
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Schema(description = "Identificador de la línea (se genera automáticamente)", accessMode = Schema.AccessMode.READ_ONLY)
+    private Long id;
+
+    @ManyToOne(optional = false)
     @JoinColumn(name = "pedido_id")
+    @NotNull(message = "El pedido es obligatorio.")
     @Schema(description = "Pedido al que pertenece la línea")
     private Pedido pedido;
 
-    @MapsId("productoCodigo")
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "producto_codigo")
     @Schema(description = "Producto pedido")
     private Producto producto;
