@@ -1,8 +1,9 @@
 
 package com.aydsii.demo.repository;
 
-import com.aydsii.demo.model.DetallePedido;
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.aydsii.demo.model.tablas.DetallePedido;
 
 public interface DetallePedidoRepository extends JpaRepository<DetallePedido, Long> {
 }
