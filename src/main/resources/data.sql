@@ -1,5 +1,6 @@
 INSERT IGNORE INTO clientes (dni, nombre, apellido, email, telefono)
-VALUES ('30111222', 'Ana', 'Pérez', 'ana@mail.com', '3794000000');
+VALUES ('30111222', 'Ana', 'Pérez', 'ana@mail.com', '3794000000'),
+        ('22333444', 'Juan', 'Pérez', 'juan@mail.com', '3794000000');
 
 INSERT IGNORE INTO productos (codigo, nombre, descripcion, categoria, precio_pack, unidades_pack, stock_fisico, stock_reservado, stock_minimo, estado)
 VALUES (1, 'Vaso PET 250cc', 'Pack 10 un.', 'Vasos', 4500, 10, 100, 0, 20, 'DISPONIBLE');
