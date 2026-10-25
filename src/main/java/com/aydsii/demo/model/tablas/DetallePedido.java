@@ -1,4 +1,4 @@
-package com.aydsii.demo.model;
+package com.aydsii.demo.model.tablas;
 
 import jakarta.persistence.*;
 import lombok.*;

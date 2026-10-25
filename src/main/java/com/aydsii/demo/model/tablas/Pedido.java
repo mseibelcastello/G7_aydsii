@@ -1,4 +1,4 @@
-package com.aydsii.demo.model;
+package com.aydsii.demo.model.tablas;
 
 import java.time.*;
 
@@ -43,14 +43,13 @@ public class Pedido {
 
     @NotNull(message = "El valor total es obligatorio.")
     @PositiveOrZero(message = "El valor no puede ser negativo.")
-    @Column(precision = 12, scale = 2)
     @Schema(description = "Valor total del pedido")
     private Double valorTotal;
 
     @Schema(description = "Motivo de cancelación. Solo se completa si el pedido fue cancelado")
     private String motivoCancelacion;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "cliente_dni")
     @NotNull(message = "El cliente es obligatorio.")
     @Schema(description = "Cliente que realizó el pedido")
