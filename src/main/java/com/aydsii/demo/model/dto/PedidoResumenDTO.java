@@ -1,4 +1,4 @@
-package com.aydsii.demo.model.DTO;
+package com.aydsii.demo.model.dto;
 
 import java.time.LocalDateTime;
 

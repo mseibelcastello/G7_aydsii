@@ -2,7 +2,7 @@ package com.aydsii.demo.service;
 
 import org.springframework.stereotype.Service;
 
-import com.aydsii.demo.model.DTO.PedidoResumenDTO;
+import com.aydsii.demo.model.dto.PedidoResumenDTO;
 import com.aydsii.demo.model.tablas.Pedido;
 import com.aydsii.demo.repository.ClienteRepository;
 import com.aydsii.demo.repository.PedidoRepository;

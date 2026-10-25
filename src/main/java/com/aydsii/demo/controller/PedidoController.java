@@ -14,7 +14,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.Parameter;
 
-import com.aydsii.demo.model.DTO.PedidoResumenDTO;
+import com.aydsii.demo.model.dto.PedidoResumenDTO;
 
 @RestController
 @RequestMapping("/pedidos")
