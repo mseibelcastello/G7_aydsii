@@ -20,4 +20,10 @@ public class ManejoErrores {
         return ResponseEntity.status(status).body(ApiResponse.error(status, e.getMessage()));
     }
 
+    @ExceptionHandler(PedidoNoEncontradoException.class)
+    public ResponseEntity<ApiResponse<Void>> pedidoNoEncontrado(PedidoNoEncontradoException e) {
+        int status = HttpStatus.NOT_FOUND.value();
+        return ResponseEntity.status(status).body(ApiResponse.error(status, e.getMessage()));
+    }
+
 }
