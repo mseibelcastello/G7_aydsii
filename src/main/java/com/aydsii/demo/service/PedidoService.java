@@ -2,9 +2,13 @@ package com.aydsii.demo.service;
 
 import org.springframework.stereotype.Service;
 
+import com.aydsii.demo.model.dto.CambioEstadoDTO;
+import com.aydsii.demo.model.dto.HistorialPedidoDTO;
 import com.aydsii.demo.model.dto.PedidoResumenDTO;
+import com.aydsii.demo.model.tablas.HistorialEstado;
 import com.aydsii.demo.model.tablas.Pedido;
 import com.aydsii.demo.repository.ClienteRepository;
+import com.aydsii.demo.repository.HistorialEstadoRepository;
 import com.aydsii.demo.repository.PedidoRepository;
 import com.aydsii.demo.exception.*;
 
@@ -16,10 +20,13 @@ public class PedidoService {
 
     private final PedidoRepository pedidoRepository;
     private final ClienteRepository clienteRepository;
+    private final HistorialEstadoRepository historialRepository;
 
-    public PedidoService(PedidoRepository pedidoRepository, ClienteRepository clienteRepository) {
+    public PedidoService(PedidoRepository pedidoRepository, ClienteRepository clienteRepository,
+            HistorialEstadoRepository historialRepository) {
         this.pedidoRepository = pedidoRepository;
         this.clienteRepository = clienteRepository;
+        this.historialRepository = historialRepository;
     }
 
     public List<PedidoResumenDTO> listarPedidos(String dni) {
@@ -36,5 +43,20 @@ public class PedidoService {
         }
 
         return resultado;
+    }
+
+    public HistorialPedidoDTO consultarHistorial(Long id) {
+        Pedido pedido = pedidoRepository.findById(id)
+                .orElseThrow(() -> new PedidoNoEncontradoException(id));
+
+        List<HistorialEstado> cambios = historialRepository.findByPedidoIdOrderByFechaHoraAsc(id);
+        List<CambioEstadoDTO> historial = new ArrayList<>();
+
+        for (HistorialEstado h : cambios) {
+            historial.add(new CambioEstadoDTO(h.getEstado(), h.getFechaHora()));
+        }
+
+        return new HistorialPedidoDTO(pedido.getId(), pedido.getEstado(),
+                pedido.getMotivoCancelacion(), historial);
     }
 }
